@@ -23,6 +23,14 @@ def capture_image():
             print("Error: Failed to capture an image.")
             break
 
+        # Find faces in the current frame
+        face_locations = face_recognition.face_locations(frame)
+
+        # Draw rectangles around the faces
+        for face_location in face_locations:
+            top, right, bottom, left = face_location
+            cv2.rectangle(frame, (left, top), (right, bottom), (15, 255, 15), 1)
+
         # Display the frame
         cv2.imshow("Webcam - Press 's' to save, 'q' to quit", frame)
 
